@@ -126,17 +126,22 @@ bt_data = data[['Open', 'High', 'Low', 'Close', 'ATR', 'ADX', 'signal']].dropna(
 
 # Run Backtest
 bt = Backtest(bt_data, MyRejectionStrategy, cash=100000, commission=0.0005)
-results = bt.optimize(
+
+results1 = bt.optimize(
     atr_mult_sl=range(1, 3, 1),
     atr_mult_tp=range(2, 5, 1),
     maximize='Return [%]'
 )
 
-# Display Results
-print(results)
+results2 = bt.optimize(
+    atr_mult_sl=range(1, 3, 1),
+    atr_mult_tp=range(2, 5, 1),
+    maximize='Sharpe Ratio'
+)
 
-# Plot Backtest
-bt.plot()
+
+# Display Results
+print(results2)
 
 
 
